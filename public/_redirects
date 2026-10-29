@@ -1,0 +1,16 @@
+# Cloudflare Pages Clean URLs for TariAds Multi-Page Application
+# Preserves static assets, icons, SW, and HTML routes
+
+/discover       /discover.html      200
+/categories     /categories.html    200
+/properties     /properties.html    200
+/vehicles       /vehicles.html      200
+/products       /products.html      200
+/services       /services.html      200
+/agriculture    /agriculture.html   200
+/mining         /mining.html        200
+/saved          /saved.html         200
+/post-listing   /post-listing.html  200
+/list-property  /list-property.html 200
+/about          /about.html         200
+/offline        /offline.html       200
