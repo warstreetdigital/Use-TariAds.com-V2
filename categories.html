@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#075E34">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TariAds">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Categories — TariAds Visual Discovery Hub</title>
+  <meta name="description" content="Explore TariAds marketplace categories: Property, Vehicles, Products, and Services. Tap to browse verified listings.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Navigation Pre-warming for Snappy Transitions -->
+  <link rel="prefetch" href="index.html">
+  <link rel="prefetch" href="discover.html">
+  <link rel="prefetch" href="saved.html">
+  <link rel="prefetch" href="post-listing.html">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body class="app-dark-page categories-page">
+
+  <!-- Site Header -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" title="TariAds Marketplace">
+        <div class="brand-icon-box">T</div>
+        <div class="brand-text">
+          <span class="brand-title">TARIADS</span>
+        </div>
+      </a>
+
+      <!-- Ecosystem Mode Switch: Marketplace ↔ Billboard -->
+      <div class="ecosystem-mode-switch" role="tablist" aria-label="TariAds Experience Mode">
+        <a href="index.html" class="mode-btn active" id="modeMarketplace" role="tab" aria-selected="true" title="TariAds Marketplace — Discover and List">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Marketplace</span>
+        </a>
+        <a href="https://billboard.usetariads.com" class="mode-btn" id="modeBillboard" role="tab" aria-selected="false" title="TariAds Billboard — Digital Advertising & Campaigns">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <line x1="8" x2="16" y1="21" y2="21"/>
+            <line x1="12" x2="12" y1="17" y2="21"/>
+          </svg>
+          <span>Billboard</span>
+        </a>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="saved.html" class="saved-btn" title="Saved Items">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="saved-label">Saved</span>
+          <span class="badge-count saved-count-display" style="display:none;">0</span>
+        </a>
+
+        <a href="post-listing.html" class="btn btn-primary btn-sm header-post-btn" id="headerListBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          <span class="post-btn-text">Post Listing</span>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobileNavDrawer">
+    <div class="drawer-mode-switch-container">
+      <div class="drawer-mode-label">TARIADS EXPERIENCE</div>
+      <div class="ecosystem-mode-switch mobile-drawer-switch">
+        <a href="index.html" class="mode-btn active">Marketplace</a>
+        <a href="https://billboard.usetariads.com" class="mode-btn">Billboard ↗</a>
+      </div>
+    </div>
+    <div class="drawer-links-group">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="discover.html" class="nav-link">Discover Reels</a>
+      <a href="categories.html" class="nav-link active">Categories</a>
+      <a href="properties.html" class="nav-link">Property</a>
+      <a href="vehicles.html" class="nav-link">Vehicles</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="agriculture.html" class="nav-link">Agriculture</a>
+      <a href="mining.html" class="nav-link">Mining</a>
+      <a href="saved.html" class="nav-link">Saved</a>
+      <a href="about.html" class="nav-link">About & Safety</a>
+    </div>
+    <div class="drawer-footer-action">
+      <a href="post-listing.html" class="btn btn-primary" style="width:100%; text-align:center;">+ Post a Listing</a>
+    </div>
+  </div>
+
+  <!-- Persistent Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Bottom Navigation">
+    <a href="index.html" class="bottom-nav-item" id="bnavHome">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="discover.html" class="bottom-nav-item" id="bnavDiscover">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+      </svg>
+      <span>Discover</span>
+    </a>
+    <a href="categories.html" class="bottom-nav-item active" id="bnavCategories">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="7" height="7" x="3" y="3" rx="1"/>
+        <rect width="7" height="7" x="14" y="3" rx="1"/>
+        <rect width="7" height="7" x="14" y="14" rx="1"/>
+        <rect width="7" height="7" x="3" y="14" rx="1"/>
+      </svg>
+      <span>Categories</span>
+    </a>
+    <a href="saved.html" class="bottom-nav-item" id="bnavSaved">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+      </svg>
+      <span>Saved</span>
+      <span class="badge-count saved-count-display bnav-badge" style="display:none;">0</span>
+    </a>
+    <a href="post-listing.html" class="bottom-nav-item bnav-post-highlight" id="bnavPost">
+      <div class="bnav-post-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <span>Post</span>
+    </a>
+  </nav>
+
+  <!-- Main Categories Application Container -->
+  <main class="categories-hub-container">
+
+    <!-- 1. Categories Selection Hub View -->
+    <div id="catHubView" class="cat-hub-view">
+      
+      <!-- Compact Heading Section -->
+      <div class="categories-header-block">
+        <h1 class="categories-main-title">Categories</h1>
+        <p class="categories-sub-title">What are you looking for?</p>
+      </div>
+
+      <!-- Functional Category Search Field -->
+      <div class="category-search-bar">
+        <span class="category-search-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.3-4.3"/>
+          </svg>
+        </span>
+        <input 
+          type="text" 
+          id="categorySearchInput" 
+          class="category-search-input" 
+          placeholder="Find a category" 
+          autocomplete="off"
+          aria-label="Find a category" 
+        />
+        <button type="button" id="categorySearchClear" class="category-search-clear" aria-label="Clear Search">
+          ✕
+        </button>
+      </div>
+
+      <!-- Category Card Grid: Exactly 6 Main Categories in 2 Columns -->
+      <!-- Category Card Grid: Exactly 6 Approved Categories in 2 Columns -->
+      <div class="category-grid-2col" id="categoryCardsGrid">
+
+        <!-- 1. Property (Flagship) -->
+        <article class="category-locked-card" data-category="property" data-cat-name="Property" data-cat-desc="Houses, rentals, land" role="button" tabindex="0" aria-label="Open Property Category">
+          <div class="category-card-media">
+            <img class="category-card-img" src="assets/images/cat_property_flagship_1792952460574.jpg" alt="Property" loading="lazy" />
+          </div>
+          <div class="category-card-info">
+            <h2 class="category-card-title">Property</h2>
+            <div class="category-card-meta-row">
+              <p class="category-card-desc">Houses, rentals, land</p>
+              <div class="category-card-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Vehicles -->
+        <article class="category-locked-card" data-category="vehicles" data-cat-name="Vehicles" data-cat-desc="Cars, pickups, motorcycles" role="button" tabindex="0" aria-label="Open Vehicles Category">
+          <div class="category-card-media">
+            <img class="category-card-img" src="assets/images/cat_vehicles_showcase_1792952462020.jpg" alt="Vehicles" loading="lazy" />
+          </div>
+          <div class="category-card-info">
+            <h2 class="category-card-title">Vehicles</h2>
+            <div class="category-card-meta-row">
+              <p class="category-card-desc">Cars, pickups, motorcycles</p>
+              <div class="category-card-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Products -->
+        <article class="category-locked-card" data-category="products" data-cat-name="Products" data-cat-desc="Bedding, tech, retail goods" role="button" tabindex="0" aria-label="Open Products Category">
+          <div class="category-card-media">
+            <img class="category-card-img" src="assets/images/cat_products_solar_1792952461787.jpg" alt="Products" loading="lazy" />
+          </div>
+          <div class="category-card-info">
+            <h2 class="category-card-title">Products</h2>
+            <div class="category-card-meta-row">
+              <p class="category-card-desc">Bedding, tech, retail goods</p>
+              <div class="category-card-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Services -->
+        <article class="category-locked-card" data-category="services" data-cat-name="Services" data-cat-desc="Skills, businesses, repairs" role="button" tabindex="0" aria-label="Open Services Category">
+          <div class="category-card-media">
+            <img class="category-card-img" src="assets/images/cat_services_contractor_1792952462368.jpg" alt="Services" loading="lazy" />
+          </div>
+          <div class="category-card-info">
+            <h2 class="category-card-title">Services</h2>
+            <div class="category-card-meta-row">
+              <p class="category-card-desc">Skills, businesses, repairs</p>
+              <div class="category-card-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Agriculture -->
+        <article class="category-locked-card" data-category="agriculture" data-cat-name="Agriculture" data-cat-desc="Produce, livestock, farm supplies" role="button" tabindex="0" aria-label="Open Agriculture Category">
+          <div class="category-card-media">
+            <img class="category-card-img" src="assets/images/cat_agriculture_1792952463001.jpg" alt="Agriculture" loading="lazy" />
+          </div>
+          <div class="category-card-info">
+            <h2 class="category-card-title">Agriculture</h2>
+            <div class="category-card-meta-row">
+              <p class="category-card-desc">Produce, livestock, farm supplies</p>
+              <div class="category-card-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Mining -->
+        <article class="category-locked-card" data-category="mining" data-cat-name="Mining" data-cat-desc="Machinery, minerals, supplies" role="button" tabindex="0" aria-label="Open Mining Category">
+          <div class="category-card-media">
+            <img class="category-card-img" src="assets/images/cat_mining_1792952463002.jpg" alt="Mining" loading="lazy" />
+          </div>
+          <div class="category-card-info">
+            <h2 class="category-card-title">Mining</h2>
+            <div class="category-card-meta-row">
+              <p class="category-card-desc">Machinery, minerals, supplies</p>
+              <div class="category-card-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Compact "No categories found" state -->
+      <div id="categorySearchEmpty" class="category-search-empty" style="display:none;">
+        <p>No categories matching &ldquo;<span id="catEmptyQueryText" style="color:#FFFFFF; font-weight:600;"></span>&rdquo;</p>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('categorySearchClear').click()">
+          View All Categories
+        </button>
+      </div>
+
+      <!-- Popular Products (Top Selling) Section -->
+      <section class="category-popular-products-section" id="catPopularProductsSection">
+        <div class="section-heading-row">
+          <div class="section-heading-left">
+            <span class="section-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </span>
+            <h2 class="section-title-sm">Popular Products</h2>
+          </div>
+          <a href="categories.html?category=products" class="section-see-all-link">See all &rarr;</a>
+        </div>
+        <div class="category-explorer-grid" id="catPopularProductsGrid"></div>
+      </section>
+
+    </div>
+
+    <!-- 2. Category Browsing Screen (Powered by CategoryExplorer) -->
+    <div id="catBrowsingView" class="cat-browsing-view"></div>
+
+  </main>
+
+  <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/category-explorer.js"></script>
+  <script type="module" src="js/categories.js"></script>
+</body>
+</html>

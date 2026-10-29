@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#075E34">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TariAds">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Discover Reels — TariAds Commercial Video & Tours</title>
+  <meta name="description" content="Watch full-screen commercial property tours, vehicle walkarounds, and product demonstrations on TariAds Discover Reels.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/reels.css">
+  <!-- Navigation Pre-warming for Instant Transitions -->
+  <link rel="prefetch" href="index.html">
+  <link rel="prefetch" href="categories.html">
+  <link rel="prefetch" href="saved.html">
+  <link rel="prefetch" href="post-listing.html">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body class="reels-page">
+
+  <!-- Desktop Ambient Background Stage -->
+  <div class="reels-stage-wrapper">
+    <div class="reels-desktop-ambient"></div>
+
+    <!-- Main Mobile Application Viewport Frame -->
+    <main class="reels-app-viewport" id="reelsAppViewport">
+
+      <!-- Top Header Navigation Overlay -->
+      <header class="reels-top-bar" id="reelsTopBar">
+        <div class="reels-top-header-row">
+          <a href="index.html" class="reels-brand-lockup" title="Return to TariAds Home Feed">
+            <div class="reels-brand-badge">T</div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span class="reels-brand-title">TARIADS</span>
+              <span class="reels-live-indicator">
+                <span class="reels-live-pulse-dot"></span>
+                REELS
+              </span>
+            </div>
+          </a>
+
+          <div class="reels-top-actions">
+            <!-- Search Trigger -->
+            <button type="button" class="reels-top-btn" id="reelsSearchToggleBtn" aria-label="Search reels" title="Search reels">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+
+            <!-- Sound Mute/Unmute Toggle -->
+            <button type="button" class="reels-top-btn" id="reelsSoundToggleBtn" aria-label="Toggle sound" title="Unmute sound">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      <!-- Discover Commercial Reels Section -->
+      <section class="discover-reels-section" aria-label="Commercial Video Reels">
+        <div class="discover-reels-header">
+          <div class="discover-reels-badge">
+            <span class="discover-reels-badge-dot"></span>
+            Short-Form Discovery
+          </div>
+          <h1 class="discover-reels-title">Commercial Reels</h1>
+          <p class="discover-reels-subtitle">Watch portrait video showcases from verified businesses and creators in Harare.</p>
+        </div>
+
+        <!-- Mobile-First Portrait Preview Grid -->
+        <div class="reels-preview-grid" id="reelsPreviewGrid">
+          <!-- Populated by js/discover.js with the 4 exact reels -->
+        </div>
+      </section>
+
+      <!-- Dedicated Reel Viewer Overlay (Responsive video, clear close (X), playback controls) -->
+      <div class="reel-viewer-overlay" id="reelViewerOverlay" role="dialog" aria-modal="true" aria-label="Reels Video Player">
+        <!-- Top Bar -->
+        <div class="reel-viewer-top-bar">
+          <div class="reel-viewer-brand">
+            <span>TARIADS REELS</span>
+            <span class="reel-viewer-index-pill" id="reelViewerIndexPill">1 / 4</span>
+          </div>
+          <div class="reel-viewer-top-actions">
+            <button type="button" class="reel-ctrl-btn" id="reelViewerMuteBtn" aria-label="Toggle mute" title="Toggle audio">
+              <svg id="reelMuteIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </button>
+            <!-- Clear Close Button (X) -->
+            <button type="button" class="reel-viewer-close-btn" id="closeReelViewerBtn" aria-label="Close video player" title="Close video player">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Responsive Video Stage (Contain, No Stretch) -->
+        <div class="reel-viewer-stage" id="reelViewerStage">
+          <video class="reel-viewer-video" id="reelViewerVideo" playsinline webkit-playsinline preload="metadata"></video>
+          
+          <!-- Tap feedback flash -->
+          <div class="reel-viewer-tap-feedback" id="reelTapFeedback" aria-hidden="true">
+            <svg id="reelTapIcon" width="34" height="34" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+
+          <!-- Buffering spinner -->
+          <div class="reel-viewer-spinner" id="reelViewerSpinner" aria-hidden="true"></div>
+
+          <!-- Video Error State Overlay with Retry -->
+          <div class="reel-viewer-error-box" id="reelViewerErrorBox">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <h4 class="reel-viewer-error-title">Video Unavailable</h4>
+            <p class="reel-viewer-error-desc">This commercial video could not be played. Please check your network connection.</p>
+            <button type="button" class="reel-viewer-retry-btn" id="reelRetryBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+              Retry Playback
+            </button>
+          </div>
+        </div>
+
+        <!-- Bottom Bar: Progress Scrubber, Controls, Business Info -->
+        <div class="reel-viewer-bottom-bar">
+          <!-- Progress Scrubber -->
+          <div class="reel-viewer-progress-row">
+            <div class="reel-viewer-progress-track" id="reelProgressTrack" role="slider" aria-label="Playback progress" tabindex="0">
+              <div class="reel-viewer-progress-fill" id="reelProgressFill"></div>
+            </div>
+            <span class="reel-viewer-time" id="reelViewerTime">0:00 / 0:00</span>
+          </div>
+
+          <!-- Playback Controls Row -->
+          <div class="reel-viewer-controls-row">
+            <div class="reel-viewer-left-controls">
+              <button type="button" class="reel-ctrl-btn" id="reelPlayPauseBtn" aria-label="Play or pause" title="Play / Pause">
+                <svg id="reelPlayPauseIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Prev / Next Navigation -->
+            <div class="reel-viewer-nav-controls">
+              <button type="button" class="reel-ctrl-btn" id="reelPrevBtn" aria-label="Previous reel" title="Previous Reel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button type="button" class="reel-ctrl-btn" id="reelNextBtn" aria-label="Next reel" title="Next Reel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Business Profile Row -->
+          <div class="reel-viewer-business-row" id="reelViewerBusinessRow">
+            <!-- Populated dynamically by js/discover.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- App Toast Notification -->
+      <div class="reels-toast" id="reelsToast">
+        <span>Action completed</span>
+      </div>
+
+      <!-- Persistent Mobile Bottom Navigation Bar (App Standards) -->
+      <nav class="mobile-bottom-nav" aria-label="Mobile Bottom Navigation">
+        <a href="index.html" class="bottom-nav-item" id="bnavHome">
+          <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="discover.html" class="bottom-nav-item active" id="bnavDiscover">
+          <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+          <span>Discover</span>
+        </a>
+        <a href="categories.html" class="bottom-nav-item" id="bnavCategories">
+          <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="7" height="7" x="3" y="3" rx="1"/>
+            <rect width="7" height="7" x="14" y="3" rx="1"/>
+            <rect width="7" height="7" x="14" y="14" rx="1"/>
+            <rect width="7" height="7" x="3" y="14" rx="1"/>
+          </svg>
+          <span>Categories</span>
+        </a>
+        <a href="saved.html" class="bottom-nav-item" id="bnavSaved">
+          <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+          </svg>
+          <span>Saved</span>
+          <span class="badge-count saved-count-display bnav-badge" style="display:none;">0</span>
+        </a>
+        <a href="post-listing.html" class="bottom-nav-item bnav-post-highlight" id="bnavPost">
+          <div class="bnav-post-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+          <span>Post</span>
+        </a>
+      </nav>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/discover.js"></script>
+</body>
+</html>
