@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#075E34">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TariAds">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>List Your Property | TariAds Marketplace</title>
+  <meta name="description" content="List your property for rent or sale on TariAds. Reach genuine tenants and buyers with verified badges and direct WhatsApp connections.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-box">T</div>
+        <div class="brand-text">
+          <span class="brand-title">TARIADS</span>
+        </div>
+      </a>
+
+      <!-- Ecosystem Mode Switch: Marketplace ↔ Billboard -->
+      <div class="ecosystem-mode-switch" role="tablist" aria-label="TariAds Experience Mode">
+        <a href="index.html" class="mode-btn active" id="modeMarketplace" role="tab" aria-selected="true" title="TariAds Marketplace — Discover and List">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Marketplace</span>
+        </a>
+        <a href="https://billboard.usetariads.com" class="mode-btn" id="modeBillboard" role="tab" aria-selected="false" title="TariAds Billboard — Digital Advertising & Campaigns">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <line x1="8" x2="16" y1="21" y2="21"/>
+            <line x1="12" x2="12" y1="17" y2="21"/>
+          </svg>
+          <span>Billboard</span>
+        </a>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="saved.html" class="saved-btn" title="Saved Properties">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="saved-label">Saved</span>
+          <span class="badge-count saved-count-display" style="display:none;">0</span>
+        </a>
+        <a href="list-property.html" class="btn btn-primary btn-sm header-post-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          <span class="post-btn-text">List Property</span>
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobileNavDrawer">
+    <div class="drawer-mode-switch-container">
+      <div class="drawer-mode-label">TARIADS EXPERIENCE</div>
+      <div class="ecosystem-mode-switch mobile-drawer-switch">
+        <a href="index.html" class="mode-btn active">Marketplace</a>
+        <a href="https://billboard.usetariads.com" class="mode-btn">Billboard ↗</a>
+      </div>
+    </div>
+    <div class="drawer-links-group">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="properties.html" class="nav-link flagship-nav-link">Property <span class="flagship-badge">Flagship</span></a>
+      <a href="vehicles.html" class="nav-link">Vehicles</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="categories.html" class="nav-link">All Categories</a>
+      <a href="saved.html" class="nav-link">Saved Items</a>
+      <a href="about.html" class="nav-link">About & Safety</a>
+    </div>
+    <div class="drawer-footer-action">
+      <a href="list-property.html" class="btn btn-primary" style="width:100%; text-align:center;">+ List Property</a>
+    </div>
+  </div>
+
+  <!-- Hero Header -->
+  <div style="background:linear-gradient(180deg, #F0FDF4 0%, #FFFFFF 100%); border-bottom:1px solid #E2E8F0; padding:2.5rem 0 1.5rem; text-align:center;">
+    <div class="container" style="max-width:680px;">
+      <span style="font-size:0.8rem; font-weight:700; background:#EBF7F0; color:#075E34; padding:0.3rem 0.8rem; border-radius:9999px; display:inline-block; margin-bottom:0.75rem;">
+        FOR LANDLORDS & REGISTERED AGENTS
+      </span>
+      <h1 style="font-size:2.25rem; font-weight:800; color:#0F172A; line-height:1.2; margin-bottom:0.5rem;">
+        List Your Property on TariAds
+      </h1>
+      <p style="font-size:0.95rem; color:#64748B;">
+        Publish verified listings with QR codes for your physical signboards and reach serious tenants without scam interference.
+      </p>
+    </div>
+  </div>
+
+  <!-- Wizard Form Section -->
+  <div class="container">
+    <div class="wizard-container">
+      
+      <!-- Steps Indicator -->
+      <div class="wizard-steps-indicator">
+        <div class="wizard-step-node active" id="stepNode1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Basic Info</span>
+        </div>
+        <div class="wizard-step-node" id="stepNode2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Pricing & Specs</span>
+        </div>
+        <div class="wizard-step-node" id="stepNode3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Utilities</span>
+        </div>
+        <div class="wizard-step-node" id="stepNode4">
+          <div class="step-circle">4</div>
+          <span class="step-label">Photos & Host</span>
+        </div>
+      </div>
+
+      <form id="listPropertyForm">
+        
+        <!-- STEP 1: Basic Info & Location -->
+        <div id="wizardStep1" class="wizard-step-panel">
+          <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:0.35rem;">Step 1: Property Overview</h3>
+          <p style="font-size:0.85rem; color:#64748B; margin-bottom:1.5rem;">Tell prospective tenants and buyers what you are offering.</p>
+
+          <div class="form-group">
+            <label class="form-label" for="listTitle">Property Headline / Title *</label>
+            <input type="text" class="form-input" id="listTitle" placeholder="e.g. Modern 4-Bedroom House with 5kVA Solar & Borehole" required />
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label" for="listCategory">Listing Category *</label>
+              <select class="form-select" id="listCategory" required>
+                <option value="rent">House / Apartment for Rent</option>
+                <option value="sale">House / Land for Sale</option>
+                <option value="student">Student Accommodation</option>
+                <option value="rooms">Room / Cottage</option>
+                <option value="commercial">Commercial Office / Retail</option>
+                <option value="holiday">Holiday / Short-Stay</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="listPropertyType">Property Type *</label>
+              <select class="form-select" id="listPropertyType" required>
+                <option value="House">Stand-Alone House</option>
+                <option value="Apartment">Apartment / Flat in Complex</option>
+                <option value="Townhouse">Gated Townhouse</option>
+                <option value="Cottage">Garden Cottage</option>
+                <option value="Student Hostel">Student Hostel / Room</option>
+                <option value="Office">Commercial Office Suite</option>
+                <option value="Land">Residential Stand / Land</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label" for="listCity">City / Province *</label>
+              <select class="form-select" id="listCity" required>
+                <option value="Harare">Harare</option>
+                <option value="Bulawayo">Bulawayo</option>
+                <option value="Mutare">Mutare</option>
+                <option value="Gweru">Gweru</option>
+                <option value="Chitungwiza">Chitungwiza</option>
+                <option value="Victoria Falls">Victoria Falls</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="listSuburb">Suburb / Neighborhood *</label>
+              <input type="text" class="form-input" id="listSuburb" placeholder="e.g. Borrowdale, Avondale, Hillside" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="listAddress">Road / Nearby Landmarks</label>
+            <input type="text" class="form-input" id="listAddress" placeholder="e.g. Kingsmead Road (near Sam Levy's Village)" />
+            <div class="form-help">Exact street numbers will only be revealed to confirmed scheduled viewing requests.</div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Pricing & Specs -->
+        <div id="wizardStep2" class="wizard-step-panel" style="display:none;">
+          <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:0.35rem;">Step 2: Price & Property Dimensions</h3>
+          <p style="font-size:0.85rem; color:#64748B; margin-bottom:1.5rem;">Transparent pricing builds trust with tenants.</p>
+
+          <div style="display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label" for="listPrice">Price in USD ($) *</label>
+              <input type="number" class="form-input" id="listPrice" placeholder="e.g. 650" min="1" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="listPricePeriod">Billing Frequency</label>
+              <select class="form-select" id="listPricePeriod">
+                <option value="month">Per Month</option>
+                <option value="night">Per Night</option>
+                <option value="once">Total Selling Price</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="listDeposit">Deposit Required (USD)</label>
+              <input type="number" class="form-input" id="listDeposit" placeholder="e.g. 650" min="0" />
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:1rem;">
+            <div class="form-group">
+              <label class="form-label" for="listBedrooms">Bedrooms</label>
+              <input type="number" class="form-input" id="listBedrooms" min="0" max="20" value="3" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="listBathrooms">Bathrooms</label>
+              <input type="number" class="form-input" id="listBathrooms" min="0" max="20" step="0.5" value="2" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="listSize">Floor Size (m²)</label>
+              <input type="number" class="form-input" id="listSize" placeholder="e.g. 250" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="listFurnished">Furnishing</label>
+              <select class="form-select" id="listFurnished">
+                <option value="Unfurnished">Unfurnished</option>
+                <option value="Semi-Furnished">Semi-Furnished</option>
+                <option value="Furnished">Fully Furnished</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="listDescription">Detailed Property Description</label>
+            <textarea class="form-textarea" id="listDescription" rows="4" placeholder="Describe the layout, natural lighting, finishes, kitchen fittings, and security features..."></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 3: Essential Zimbabwe Utilities -->
+        <div id="wizardStep3" class="wizard-step-panel" style="display:none;">
+          <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:0.35rem;">Step 3: Essential Zimbabwe Infrastructure</h3>
+          <p style="font-size:0.85rem; color:#64748B; margin-bottom:1.5rem;">Tenants prioritize properties with reliable power and water solutions.</p>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; background:#F8FAFC; border:1px solid #E2E8F0; padding:1.5rem; border-radius:10px;">
+            <label class="checkbox-label" style="font-weight:700;">
+              <input type="checkbox" id="featureSolar" checked />
+              <span>⚡ Solar Backup Inverter System</span>
+            </label>
+
+            <label class="checkbox-label" style="font-weight:700;">
+              <input type="checkbox" id="featureBorehole" checked />
+              <span>💧 Prolific Borehole & Water Tanks</span>
+            </label>
+
+            <label class="checkbox-label" style="font-weight:700;">
+              <input type="checkbox" id="featureWalled" checked />
+              <span>🛡️ Durawall on all 4 boundaries</span>
+            </label>
+
+            <label class="checkbox-label" style="font-weight:700;">
+              <input type="checkbox" id="featureGate" checked />
+              <span>🚪 Automated Electric Gate & Intercom</span>
+            </label>
+
+            <label class="checkbox-label" style="font-weight:700;">
+              <input type="checkbox" id="featurePool" />
+              <span>🏊 Swimming Pool</span>
+            </label>
+
+            <label class="checkbox-label" style="font-weight:700;">
+              <input type="checkbox" id="featureStaff" />
+              <span>🏡 Staff Quarters / Domestic Cottage</span>
+            </label>
+
+            <label class="checkbox-label" style="font-weight:700;">
+              <input type="checkbox" id="featureFibre" checked />
+              <span>🌐 High-Speed Fibre Wi-Fi Ready</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 4: Photos & Host Contact -->
+        <div id="wizardStep4" class="wizard-step-panel" style="display:none;">
+          <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:0.35rem;">Step 4: Photos & Host Contact</h3>
+          <p style="font-size:0.85rem; color:#64748B; margin-bottom:1.5rem;">Upload authentic property photos and enter your direct contact info.</p>
+
+          <!-- Upload Dropzone -->
+          <div class="form-group">
+            <label class="form-label">Property Photos</label>
+            <div class="image-upload-dropzone" onclick="document.getElementById('imageFileInput').click();">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#075E34" stroke-width="2" style="margin:0 auto 0.5rem;"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+              <div style="font-weight:700; font-size:0.95rem;">Click to upload high-resolution photos</div>
+              <div style="font-size:0.8rem; color:#64748B;">Supported: JPG, PNG, WEBP</div>
+              <input type="file" id="imageFileInput" multiple accept="image/*" style="display:none;" />
+            </div>
+
+            <div class="upload-preview-grid" id="uploadPreviewGrid">
+              <!-- Upload previews populated -->
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem;">
+            <div class="form-group">
+              <label class="form-label" for="contactName">Landlord / Agent Full Name *</label>
+              <input type="text" class="form-input" id="contactName" placeholder="e.g. Tendai Mupfumi" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactPhone">WhatsApp / Phone Number *</label>
+              <input type="tel" class="form-input" id="contactPhone" placeholder="e.g. +263 77 123 4567" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactAgency">Agency / Host Type</label>
+            <input type="text" class="form-input" id="contactAgency" placeholder="e.g. Direct Landlord or Agency Name" />
+          </div>
+
+          <!-- Verified Checkbox -->
+          <div style="background:#F0FDF4; border:1px solid #A8DAB5; padding:1rem; border-radius:8px; margin-top:1rem;">
+            <label class="checkbox-label" style="font-weight:700; color:#075E34;">
+              <input type="checkbox" id="requestVerification" checked />
+              <span>Apply for "Verified by TariAds" Physical Badge (Free)</span>
+            </label>
+            <p style="font-size:0.775rem; color:#065F46; margin-top:0.35rem; margin-left:1.5rem;">
+              A TariAds field auditor will confirm property ownership and generate an official QR code for your physical signboard.
+            </p>
+          </div>
+        </div>
+
+        <!-- Wizard Navigation Controls -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid #E2E8F0;">
+          <button type="button" class="btn btn-secondary" id="wizardPrevBtn" style="display:none;">
+            ← Back
+          </button>
+          <div style="margin-left:auto; display:flex; gap:0.75rem;">
+            <button type="button" class="btn btn-primary" id="wizardNextBtn">
+              Continue to Step 2 →
+            </button>
+            <button type="submit" class="btn btn-primary" id="wizardSubmitBtn" style="display:none;">
+              Publish Property Listing
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Submission Success Modal -->
+  <div class="modal-backdrop" id="submissionSuccessModal">
+    <div class="modal-box" style="text-align:center;">
+      <div class="modal-body" style="padding:2.5rem 1.5rem;">
+        <div style="width:64px; height:64px; background:#EBF7F0; color:#075E34; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 style="font-size:1.5rem; font-weight:800; color:#0F172A; margin-bottom:0.5rem;">Property Listed Successfully!</h3>
+        <p style="color:#64748B; font-size:0.9rem; margin-bottom:1.5rem;">
+          Your listing has been published to TariAds with reference <strong id="newPropIdDisplay" style="color:#075E34;">TAR-000</strong>. Your QR code is ready for display.
+        </p>
+        <a id="viewNewPropLink" href="#" class="btn btn-primary btn-lg" style="width:100%;">
+          View Your Live Property Listing
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>TARIADS</h3>
+          <p>
+            Zimbabwe's dedicated property-first platform. Built to solve the real housing challenge: finding verified places, avoiding viewing scams, and booking direct viewings seamlessly.
+          </p>
+          <div style="margin-top:1.5rem; color:#A8DAB5; font-size:0.8125rem; font-weight:700;">
+            PROPERTY • LISTINGS • VISIBILITY
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Property Categories</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?category=rent">Houses for Rent</a></li>
+            <li><a href="properties.html?category=rent&type=Apartment">Apartments & Flats</a></li>
+            <li><a href="properties.html?category=rooms">Rooms & Cottages</a></li>
+            <li><a href="properties.html?category=student">Student Accommodation</a></li>
+            <li><a href="properties.html?category=sale">Houses for Sale</a></li>
+            <li><a href="properties.html?category=commercial">Commercial Property</a></li>
+            <li><a href="properties.html?category=holiday">Holiday & Short-Stays</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Top Locations</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?location=Harare">Harare Properties</a></li>
+            <li><a href="properties.html?location=Bulawayo">Bulawayo Properties</a></li>
+            <li><a href="properties.html?location=Mutare">Mutare Properties</a></li>
+            <li><a href="properties.html?location=Gweru">Gweru Properties</a></li>
+            <li><a href="properties.html?location=Victoria+Falls">Victoria Falls Lodges</a></li>
+            <li><a href="properties.html?location=Chitungwiza">Chitungwiza Rentals</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Trust & Support</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About TariAds Verification</a></li>
+            <li><a href="about.html#safety">Anti-Scam Viewing Rules</a></li>
+            <li><a href="list-property.html">List a Property</a></li>
+            <li><a href="saved.html">My Saved Properties</a></li>
+            <li><a href="about.html#contact">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 TariAds.com — Zimbabwe Property First Platform. All rights reserved.</div>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="about.html#privacy">Privacy Policy</a>
+          <a href="about.html#terms">Terms of Service</a>
+          <a href="about.html#safety">Safety Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/list-property.js"></script>
+</body>
+</html>

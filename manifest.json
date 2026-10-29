@@ -1,0 +1,75 @@
+{
+  "id": "/",
+  "name": "TariAds",
+  "short_name": "TariAds",
+  "description": "Zimbabwe's premier discovery marketplace for property, vehicles, products, and verified local services.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#075E34",
+  "background_color": "#0A0A0A",
+  "dir": "ltr",
+  "lang": "en",
+  "categories": [
+    "shopping",
+    "business",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Discover Reels",
+      "short_name": "Reels",
+      "description": "Watch commercial video showcases from Harare businesses",
+      "url": "/discover.html",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Categories",
+      "short_name": "Categories",
+      "description": "Browse marketplace categories",
+      "url": "/categories.html",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Post a Listing",
+      "short_name": "Post",
+      "description": "Advertise your property, vehicle or business",
+      "url": "/post-listing.html",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Saved Listings",
+      "short_name": "Saved",
+      "description": "View bookmarked listings",
+      "url": "/saved.html",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

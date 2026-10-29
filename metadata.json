@@ -1,0 +1,6 @@
+{
+  "name": "TariAds - Global Listings & Discovery Marketplace",
+  "description": "Global discovery marketplace for property (flagship), vehicles, and products with publisher identity, persistent icon navigation, and Billboard ecosystem switch.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

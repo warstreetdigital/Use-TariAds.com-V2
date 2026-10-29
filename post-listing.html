@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#075E34">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TariAds">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Create a Listing — TariAds Creation Hub</title>
+  <meta name="description" content="Advertise your property, vehicle, or products on TariAds. Reach genuine buyers and tenants with direct WhatsApp contact.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Navigation Pre-warming for Snappy Transitions -->
+  <link rel="prefetch" href="index.html">
+  <link rel="prefetch" href="discover.html">
+  <link rel="prefetch" href="categories.html">
+  <link rel="prefetch" href="saved.html">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body class="app-dark-page post-page">
+
+  <!-- Site Header -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" id="brandLogo" title="TariAds Marketplace">
+        <div class="brand-icon-box">T</div>
+        <div class="brand-text">
+          <span class="brand-title">TARIADS</span>
+        </div>
+      </a>
+
+      <!-- Ecosystem Mode Switch: Marketplace ↔ Billboard -->
+      <div class="ecosystem-mode-switch" role="tablist" aria-label="TariAds Experience Mode">
+        <a href="index.html" class="mode-btn active" id="modeMarketplace" role="tab" aria-selected="true" title="TariAds Marketplace — Discover and List">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Marketplace</span>
+        </a>
+        <a href="https://billboard.usetariads.com" class="mode-btn" id="modeBillboard" role="tab" aria-selected="false" title="TariAds Billboard — Digital Advertising & Campaigns">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <line x1="8" x2="16" y1="21" y2="21"/>
+            <line x1="12" x2="12" y1="17" y2="21"/>
+          </svg>
+          <span>Billboard</span>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <a href="saved.html" class="saved-btn" id="headerSavedBtn" title="Saved Items">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="saved-label">Saved</span>
+          <span class="badge-count saved-count-display" style="display:none;">0</span>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobileNavDrawer">
+    <div class="drawer-mode-switch-container">
+      <div class="drawer-mode-label">TARIADS EXPERIENCE</div>
+      <div class="ecosystem-mode-switch mobile-drawer-switch">
+        <a href="index.html" class="mode-btn active">Marketplace</a>
+        <a href="https://billboard.usetariads.com" class="mode-btn">Billboard ↗</a>
+      </div>
+    </div>
+    <div class="drawer-links-group">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="discover.html" class="nav-link">Discover Reels</a>
+      <a href="categories.html" class="nav-link">Categories</a>
+      <a href="properties.html" class="nav-link">Property</a>
+      <a href="vehicles.html" class="nav-link">Vehicles</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="saved.html" class="nav-link">Saved Items</a>
+      <a href="about.html" class="nav-link">About & Safety</a>
+    </div>
+  </div>
+
+  <!-- Persistent Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Bottom Navigation">
+    <a href="index.html" class="bottom-nav-item" id="bnavHome">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="discover.html" class="bottom-nav-item" id="bnavDiscover">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+      </svg>
+      <span>Discover</span>
+    </a>
+    <a href="categories.html" class="bottom-nav-item" id="bnavCategories">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="7" height="7" x="3" y="3" rx="1"/>
+        <rect width="7" height="7" x="14" y="3" rx="1"/>
+        <rect width="7" height="7" x="14" y="14" rx="1"/>
+        <rect width="7" height="7" x="3" y="14" rx="1"/>
+      </svg>
+      <span>Categories</span>
+    </a>
+    <a href="saved.html" class="bottom-nav-item" id="bnavSaved">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+      </svg>
+      <span>Saved</span>
+      <span class="badge-count saved-count-display bnav-badge" style="display:none;">0</span>
+    </a>
+    <a href="post-listing.html" class="bottom-nav-item bnav-post-highlight active" id="bnavPost">
+      <div class="bnav-post-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <span>Post</span>
+    </a>
+  </nav>
+
+  <!-- Compact Screen Sub-Bar -->
+  <section class="app-screen-subbar post-creation-header">
+    <div class="container">
+      <div class="app-screen-title-row">
+        <div>
+          <h1 class="app-screen-heading">Create a listing</h1>
+          <p class="app-screen-subtext">What would you like to list? Connect directly with verified buyers and tenants.</p>
+        </div>
+      </div>
+
+      <!-- Focused Category Selection Tiles -->
+      <div class="post-type-selector-grid" role="tablist" aria-label="Select Listing Category">
+        <button type="button" class="post-type-card-btn active" data-type="property" id="tabProp" role="tab" aria-selected="true">
+          <div class="post-type-icon-box">🏠</div>
+          <div class="post-type-meta">
+            <span class="post-type-name">Property</span>
+            <span class="post-type-desc">Houses, flats, land & commercial</span>
+          </div>
+        </button>
+
+        <button type="button" class="post-type-card-btn" data-type="vehicle" id="tabVeh" role="tab" aria-selected="false">
+          <div class="post-type-icon-box">🚗</div>
+          <div class="post-type-meta">
+            <span class="post-type-name">Vehicle</span>
+            <span class="post-type-desc">Cars, pickups, trucks & bikes</span>
+          </div>
+        </button>
+
+        <button type="button" class="post-type-card-btn" data-type="product" id="tabPrd" role="tab" aria-selected="false">
+          <div class="post-type-icon-box">📦</div>
+          <div class="post-type-meta">
+            <span class="post-type-name">Product</span>
+            <span class="post-type-desc">Solar backup, tech & goods</span>
+          </div>
+        </button>
+
+        <button type="button" class="post-type-card-btn" data-type="service" id="tabSrv" role="tab" aria-selected="false">
+          <div class="post-type-icon-box">⚡</div>
+          <div class="post-type-meta">
+            <span class="post-type-name">Service</span>
+            <span class="post-type-desc">Solar install, trades & business</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Container (Strict White Card) -->
+  <main class="container" style="padding-top:0.5rem; max-width:860px;">
+    <div class="post-form-card">
+      <form id="universalListingForm">
+        <input type="hidden" id="listingType" value="property" />
+
+        <div class="post-form-header">
+          <div>
+            <h2 id="formVerticalHeading" class="post-form-heading">
+              Property Details
+            </h2>
+            <p id="formVerticalSubtitle" style="font-size:0.85rem; color:#64748B; margin:0.25rem 0 0;">
+              Provide listing details to help interested clients evaluate and enquire via WhatsApp.
+            </p>
+          </div>
+          <span class="post-form-step-tag" id="formVerticalBadge">Property Listing</span>
+        </div>
+
+        <!-- 1. Title & Category -->
+        <div class="post-form-grid-2">
+          <div>
+            <label class="post-input-label" for="listTitle">Listing Title *</label>
+            <input type="text" id="listTitle" class="post-input-control" placeholder="e.g. Modern 3-Bedroom House with Borehole & Solar" required />
+          </div>
+
+          <div>
+            <label class="post-input-label" for="listCategory">Category *</label>
+            <select id="listCategory" class="post-input-control" required>
+              <option value="rent">House / Flat For Rent</option>
+              <option value="sale">House For Sale</option>
+              <option value="commercial">Commercial Space</option>
+              <option value="rooms">Room / Cottage</option>
+              <option value="student">Student Living</option>
+              <option value="land">Land / Stand</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 2. Price & Currency -->
+        <div class="post-form-grid-3">
+          <div>
+            <label class="post-input-label" for="listPrice">Price / Amount *</label>
+            <input type="number" id="listPrice" class="post-input-control" placeholder="e.g. 850" required min="1" />
+          </div>
+
+          <div>
+            <label class="post-input-label" for="listCurrency">Currency</label>
+            <select id="listCurrency" class="post-input-control">
+              <option value="USD" selected>USD ($)</option>
+              <option value="ZAR">South African Rand (ZAR)</option>
+              <option value="GBP">British Pound (GBP)</option>
+              <option value="EUR">Euro (EUR)</option>
+            </select>
+          </div>
+
+          <div id="pricePeriodWrapper">
+            <label class="post-input-label" for="listPeriod">Billing Period</label>
+            <select id="listPeriod" class="post-input-control">
+              <option value="month">Per Month</option>
+              <option value="once">Once-off (Sale)</option>
+              <option value="night">Per Night</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 3. Location & Country -->
+        <div class="post-form-grid-3">
+          <div>
+            <label class="post-input-label" for="listCountry">Country *</label>
+            <select id="listCountry" class="post-input-control" required>
+              <option value="ZW" selected>Zimbabwe</option>
+              <option value="ZA">South Africa</option>
+              <option value="UK">United Kingdom</option>
+              <option value="BW">Botswana</option>
+              <option value="ZM">Zambia</option>
+              <option value="US">United States</option>
+              <option value="KE">Kenya</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="post-input-label" for="listCity">City / Town *</label>
+            <input type="text" id="listCity" class="post-input-control" placeholder="e.g. Harare" required />
+          </div>
+
+          <div>
+            <label class="post-input-label" for="listSuburb">Suburb / Area</label>
+            <input type="text" id="listSuburb" class="post-input-control" placeholder="e.g. Avondale" />
+          </div>
+        </div>
+
+        <!-- 4. Dynamic Fields: Property vs Vehicle vs Product -->
+        <div id="dynamicPropertyFields" style="margin-bottom:1.25rem;">
+          <div class="post-form-grid-3">
+            <div>
+              <label class="post-input-label" for="propBeds">Bedrooms</label>
+              <input type="number" id="propBeds" class="post-input-control" placeholder="e.g. 3" min="0" value="3" />
+            </div>
+            <div>
+              <label class="post-input-label" for="propBaths">Bathrooms</label>
+              <input type="number" id="propBaths" class="post-input-control" placeholder="e.g. 2" min="0" value="2" step="0.5" />
+            </div>
+            <div>
+              <label class="post-input-label" for="propSize">Size (m²)</label>
+              <input type="number" id="propSize" class="post-input-control" placeholder="e.g. 180" min="0" />
+            </div>
+          </div>
+          <div style="margin-top:0.75rem; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.65rem;">
+            <label class="post-checkbox-wrap">
+              <input type="checkbox" id="propSolar" checked /> <span>⚡ Solar Power Backup</span>
+            </label>
+            <label class="post-checkbox-wrap">
+              <input type="checkbox" id="propBorehole" checked /> <span>💧 Borehole / Backup Water</span>
+            </label>
+            <label class="post-checkbox-wrap">
+              <input type="checkbox" id="propWalled" checked /> <span>🛡️ Walled & Gated Yard</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="dynamicVehicleFields" style="display:none; margin-bottom:1.25rem;">
+          <div class="post-form-grid-3">
+            <div>
+              <label class="post-input-label" for="vehYear">Model Year *</label>
+              <input type="number" id="vehYear" class="post-input-control" placeholder="e.g. 2021" min="1990" max="2027" value="2021" />
+            </div>
+            <div>
+              <label class="post-input-label" for="vehMileage">Mileage (km)</label>
+              <input type="number" id="vehMileage" class="post-input-control" placeholder="e.g. 55000" min="0" value="48000" />
+            </div>
+            <div>
+              <label class="post-input-label" for="vehTrans">Transmission</label>
+              <select id="vehTrans" class="post-input-control">
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="dynamicProductFields" style="display:none; margin-bottom:1.25rem;">
+          <div>
+            <label class="post-input-label" for="prdCondition">Condition *</label>
+            <select id="prdCondition" class="post-input-control">
+              <option value="Brand New (In Box)">Brand New (In Box)</option>
+              <option value="Like New (Mint)">Like New (Mint)</option>
+              <option value="Good Used Condition">Good Used Condition</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="dynamicServiceFields" style="display:none; margin-bottom:1.25rem;">
+          <div class="post-form-grid-2">
+            <div>
+              <label class="post-input-label" for="srvRateType">Pricing Model *</label>
+              <select id="srvRateType" class="post-input-control">
+                <option value="Fixed Price">Fixed Price</option>
+                <option value="Free Inspection & Quote">Free Inspection & Quote</option>
+                <option value="Per Hour">Hourly Rate</option>
+                <option value="Per Day">Daily Rate</option>
+                <option value="Negotiable">Negotiable</option>
+              </select>
+            </div>
+            <div>
+              <label class="post-input-label" for="srvWarranty">Guarantee / Assurance</label>
+              <input type="text" id="srvWarranty" class="post-input-control" placeholder="e.g. Workmanship Guarantee Included" value="Workmanship Guarantee Included" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Description -->
+        <div style="margin-bottom:1.25rem;">
+          <label class="post-input-label" for="listDescription">Description *</label>
+          <textarea id="listDescription" class="post-input-control" style="height:110px; resize:vertical;" placeholder="Describe features, utility reliability (solar/borehole), condition, and viewing availability..." required></textarea>
+        </div>
+
+        <!-- 6. Photo URL -->
+        <div style="margin-bottom:1.5rem;">
+          <label class="post-input-label" for="listImage">Primary Photo URL</label>
+          <input type="url" id="listImage" class="post-input-control" placeholder="https://..." value="assets/images/cat_property_flagship_1792952460574.jpg" />
+          <span style="font-size:0.75rem; color:#64748B; display:block; margin-top:0.25rem;">High-resolution verified listing photo provided.</span>
+        </div>
+
+        <!-- 7. Advertiser Details -->
+        <div style="border-top:1px solid #E2E8F0; padding-top:1.25rem; margin-bottom:1.5rem;">
+          <h3 style="font-size:1.05rem; font-weight:700; color:#0F172A; margin:0 0 0.85rem;">
+            Advertiser Contact Details
+          </h3>
+          <div class="post-form-grid-2">
+            <div>
+              <label class="post-input-label" for="agentName">Your Name / Business *</label>
+              <input type="text" id="agentName" class="post-input-control" placeholder="e.g. Sarah Dube / Prime Properties" required />
+            </div>
+            <div>
+              <label class="post-input-label" for="agentWhatsapp">WhatsApp Number (with country code) *</label>
+              <input type="text" id="agentWhatsapp" class="post-input-control" placeholder="e.g. 263771234567" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- Submission Status Banner -->
+        <div id="postFeedbackBanner" style="display:none; padding:0.85rem 1rem; border-radius:10px; font-size:0.88rem; font-weight:600; margin-bottom:1rem;"></div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitListingBtn" class="post-submit-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          <span id="submitBtnText">Publish Listing on TariAds</span>
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2026 TariAds. Global Listings & Property Marketplace.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <script type="module">
+    import { TariData } from "./js/data.js";
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const tabs = document.querySelectorAll(".post-type-card-btn");
+      const listingTypeInput = document.getElementById("listingType");
+      const propFields = document.getElementById("dynamicPropertyFields");
+      const vehFields = document.getElementById("dynamicVehicleFields");
+      const prdFields = document.getElementById("dynamicProductFields");
+      const srvFields = document.getElementById("dynamicServiceFields");
+      const categorySelect = document.getElementById("listCategory");
+      const heading = document.getElementById("formVerticalHeading");
+      const badge = document.getElementById("formVerticalBadge");
+      const periodWrapper = document.getElementById("pricePeriodWrapper");
+      const imageInput = document.getElementById("listImage");
+      const form = document.getElementById("universalListingForm");
+      const feedbackBanner = document.getElementById("postFeedbackBanner");
+      const submitBtn = document.getElementById("submitListingBtn");
+      const submitBtnText = document.getElementById("submitBtnText");
+
+      // Check url param for preselected type
+      const urlParams = new URLSearchParams(window.location.search);
+      const preType = urlParams.get("type");
+      if (preType && ["property", "vehicle", "product", "service"].includes(preType)) {
+        switchTab(preType);
+      }
+
+      function switchTab(type) {
+        tabs.forEach(t => {
+          const isActive = t.dataset.type === type;
+          t.classList.toggle("active", isActive);
+          t.setAttribute("aria-selected", isActive);
+        });
+        listingTypeInput.value = type;
+
+        if (type === "property") {
+          heading.textContent = "Property Details";
+          badge.textContent = "Property Listing";
+          propFields.style.display = "block";
+          vehFields.style.display = "none";
+          prdFields.style.display = "none";
+          if (srvFields) srvFields.style.display = "none";
+          periodWrapper.style.display = "block";
+          if (!imageInput.value || imageInput.value.includes("cat_vehicles") || imageInput.value.includes("cat_products") || imageInput.value.includes("cat_services")) {
+            imageInput.value = "assets/images/cat_property_flagship_1792952460574.jpg";
+          }
+          categorySelect.innerHTML = `
+            <option value="rent">House / Flat For Rent</option>
+            <option value="sale">House For Sale</option>
+            <option value="commercial">Commercial Space</option>
+            <option value="rooms">Room / Cottage</option>
+            <option value="student">Student Living</option>
+            <option value="land">Land / Stand</option>
+          `;
+        } else if (type === "vehicle") {
+          heading.textContent = "Vehicle Details";
+          badge.textContent = "Vehicle Listing";
+          propFields.style.display = "none";
+          vehFields.style.display = "block";
+          prdFields.style.display = "none";
+          if (srvFields) srvFields.style.display = "none";
+          periodWrapper.style.display = "none";
+          if (!imageInput.value || imageInput.value.includes("cat_property") || imageInput.value.includes("cat_products") || imageInput.value.includes("cat_services")) {
+            imageInput.value = "assets/images/cat_vehicles_showcase_1792952462020.jpg";
+          }
+          categorySelect.innerHTML = `
+            <option value="suv">SUV & 4x4</option>
+            <option value="pickup">Pickup & Bakkie</option>
+            <option value="sedan">Sedan</option>
+            <option value="hatchback">Hatchback</option>
+            <option value="commercial">Commercial Truck</option>
+            <option value="motorcycle">Motorcycle</option>
+          `;
+        } else if (type === "product") {
+          heading.textContent = "Product Details";
+          badge.textContent = "Product Listing";
+          propFields.style.display = "none";
+          vehFields.style.display = "none";
+          prdFields.style.display = "block";
+          if (srvFields) srvFields.style.display = "none";
+          periodWrapper.style.display = "none";
+          if (!imageInput.value || imageInput.value.includes("cat_property") || imageInput.value.includes("cat_vehicles") || imageInput.value.includes("cat_services")) {
+            imageInput.value = "assets/images/cat_products_solar_1792952461787.jpg";
+          }
+          categorySelect.innerHTML = `
+            <option value="solar">Solar & Power Backup</option>
+            <option value="electronics">Electronics & Tech</option>
+            <option value="furniture">Furniture & Living</option>
+            <option value="appliances">Home Appliances</option>
+            <option value="tools">Hardware & Tools</option>
+          `;
+        } else if (type === "service") {
+          heading.textContent = "Service Details";
+          badge.textContent = "Service Listing";
+          propFields.style.display = "none";
+          vehFields.style.display = "none";
+          prdFields.style.display = "none";
+          if (srvFields) srvFields.style.display = "block";
+          periodWrapper.style.display = "none";
+          if (!imageInput.value || imageInput.value.includes("cat_property") || imageInput.value.includes("cat_vehicles") || imageInput.value.includes("cat_products")) {
+            imageInput.value = "assets/images/cat_services_contractor_1792952462368.jpg";
+          }
+          categorySelect.innerHTML = `
+            <option value="solar">Solar & Backup Installation</option>
+            <option value="water">Borehole & Water Systems</option>
+            <option value="building">Building, Renovation & Trades</option>
+            <option value="transport">Freight & Transport Logistics</option>
+            <option value="farming">Agri & Commercial Services</option>
+            <option value="security">Security & Fencing</option>
+          `;
+        }
+      }
+
+      tabs.forEach(t => {
+        t.addEventListener("click", () => switchTab(t.dataset.type));
+      });
+
+      // Form Submit
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Basic validation
+        const title = document.getElementById("listTitle").value.trim();
+        const price = parseFloat(document.getElementById("listPrice").value);
+        const city = document.getElementById("listCity").value.trim();
+        const description = document.getElementById("listDescription").value.trim();
+        const agentName = document.getElementById("agentName").value.trim();
+        const rawWhatsapp = document.getElementById("agentWhatsapp").value.trim();
+        const whatsapp = rawWhatsapp.replace(/[^0-9]/g, "");
+
+        if (!title || isNaN(price) || !city || !description || !agentName || !whatsapp) {
+          feedbackBanner.style.display = "block";
+          feedbackBanner.style.background = "#FEF2F2";
+          feedbackBanner.style.color = "#991B1B";
+          feedbackBanner.style.border = "1px solid #F87171";
+          feedbackBanner.textContent = "Please fill in all required fields accurately.";
+          return;
+        }
+
+        // Show publishing indicator
+        submitBtn.disabled = true;
+        submitBtnText.textContent = "Publishing Listing...";
+
+        const type = listingTypeInput.value;
+        const category = document.getElementById("listCategory").value;
+        const currency = document.getElementById("listCurrency").value;
+        const country = document.getElementById("listCountry").value;
+        const suburb = document.getElementById("listSuburb").value.trim();
+        const image = document.getElementById("listImage").value.trim() || "assets/images/cat_property_flagship_1792952460574.jpg";
+
+        const countryNames = { ZW: "Zimbabwe", ZA: "South Africa", UK: "United Kingdom", BW: "Botswana", ZM: "Zambia", US: "United States", KE: "Kenya" };
+
+        let redirectUrl = "index.html";
+
+        if (type === "property") {
+          const beds = parseInt(document.getElementById("propBeds").value) || 0;
+          const baths = parseFloat(document.getElementById("propBaths").value) || 0;
+          const size = parseInt(document.getElementById("propSize").value) || 0;
+          const period = document.getElementById("listPeriod").value;
+
+          const newProp = {
+            id: "PROP-" + Date.now().toString(36).toUpperCase(),
+            title,
+            category,
+            propertyType: category === "commercial" ? "Commercial Property" : category === "rooms" ? "Room / Cottage" : "House",
+            country,
+            countryName: countryNames[country] || country,
+            location: city,
+            suburb,
+            address: suburb ? `${suburb}, ${city}` : city,
+            price,
+            currency,
+            pricePeriod: period,
+            deposit: price,
+            bedrooms: beds,
+            bathrooms: baths,
+            sizeSqM: size,
+            furnished: "Unfurnished",
+            availability: "Available Immediately",
+            verified: true,
+            verificationBadge: "Direct Lister",
+            lastUpdated: "Just now",
+            description,
+            amenities: ["Verified Active Listing", "Direct Lister WhatsApp"],
+            features: {
+              solar: document.getElementById("propSolar")?.checked || false,
+              borehole: document.getElementById("propBorehole")?.checked || false,
+              walled: document.getElementById("propWalled")?.checked || false
+            },
+            images: [image],
+            agent: {
+              name: agentName,
+              agency: "Direct Lister",
+              whatsapp,
+              phone: "+" + whatsapp
+            }
+          };
+
+          window.TariData.addProperty(newProp);
+          redirectUrl = `property.html?id=${newProp.id}`;
+        } else if (type === "vehicle") {
+          const year = parseInt(document.getElementById("vehYear").value) || 2021;
+          const mileage = parseInt(document.getElementById("vehMileage").value) || 0;
+          const trans = document.getElementById("vehTrans").value;
+
+          const newVeh = {
+            id: "VEH-" + Date.now().toString(36).toUpperCase(),
+            title,
+            category,
+            categoryLabel: category.toUpperCase(),
+            country,
+            countryName: countryNames[country] || country,
+            location: city,
+            suburb,
+            price,
+            currency,
+            year,
+            mileageKm: mileage,
+            transmission: trans,
+            fuel: "Petrol",
+            condition: "Verified Clean",
+            verified: true,
+            verificationBadge: "Confirmed Seller",
+            lastUpdated: "Just now",
+            description,
+            images: [image],
+            seller: {
+              name: agentName,
+              whatsapp,
+              phone: "+" + whatsapp,
+              location: `${city}, ${countryNames[country] || country}`
+            }
+          };
+
+          window.TariData.addVehicle(newVeh);
+          redirectUrl = `vehicles.html`;
+        } else if (type === "product") {
+          const condition = document.getElementById("prdCondition").value;
+
+          const newPrd = {
+            id: "PRD-" + Date.now().toString(36).toUpperCase(),
+            title,
+            category,
+            categoryLabel: category.toUpperCase(),
+            country,
+            countryName: countryNames[country] || country,
+            location: city,
+            suburb,
+            price,
+            currency,
+            condition,
+            verified: true,
+            verificationBadge: "Verified Seller",
+            lastUpdated: "Just now",
+            description,
+            images: [image],
+            seller: {
+              name: agentName,
+              whatsapp,
+              phone: "+" + whatsapp,
+              location: `${city}, ${countryNames[country] || country}`
+            }
+          };
+
+          window.TariData.addProduct(newPrd);
+          redirectUrl = `products.html`;
+        } else if (type === "service") {
+          const rateType = document.getElementById("srvRateType")?.value || "Fixed Price";
+          const warranty = document.getElementById("srvWarranty")?.value || "Workmanship Guarantee Included";
+
+          const newSrv = {
+            id: "SRV-" + Date.now().toString(36).toUpperCase(),
+            title,
+            category,
+            categoryLabel: category.toUpperCase(),
+            country,
+            countryName: countryNames[country] || country,
+            location: city,
+            suburb,
+            price,
+            currency,
+            rateType,
+            features: [warranty, "Verified Pro"],
+            verified: true,
+            verificationBadge: "Verified Service Pro",
+            lastUpdated: "Just now",
+            description,
+            images: [image],
+            seller: {
+              name: agentName,
+              whatsapp,
+              phone: "+" + whatsapp,
+              location: `${city}, ${countryNames[country] || country}`,
+              type: "Verified Service Pro"
+            }
+          };
+
+          window.TariData.addService(newSrv);
+          redirectUrl = `categories.html?cat=services`;
+        }
+
+        feedbackBanner.style.display = "block";
+        feedbackBanner.style.background = "#ECFDF5";
+        feedbackBanner.style.color = "#065F46";
+        feedbackBanner.style.border = "1px solid #6EE7B7";
+        feedbackBanner.innerHTML = `✓ Listing published successfully! Redirecting to your listing...`;
+
+        setTimeout(() => {
+          window.location.href = redirectUrl;
+        }, 600);
+      });
+    });
+  </script>
+</body>
+</html>

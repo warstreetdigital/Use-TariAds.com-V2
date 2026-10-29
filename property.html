@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#075E34">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TariAds">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Property Details | TariAds Marketplace</title>
+  <meta name="description" content="Verified property listing. View photos, amenities, pricing, and connect directly with the landlord or agent via WhatsApp.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-box">T</div>
+        <div class="brand-text">
+          <span class="brand-title">TARIADS</span>
+        </div>
+      </a>
+
+      <!-- Ecosystem Mode Switch: Marketplace ↔ Billboard -->
+      <div class="ecosystem-mode-switch" role="tablist" aria-label="TariAds Experience Mode">
+        <a href="index.html" class="mode-btn active" id="modeMarketplace" role="tab" aria-selected="true" title="TariAds Marketplace — Discover and List">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Marketplace</span>
+        </a>
+        <a href="https://billboard.usetariads.com" class="mode-btn" id="modeBillboard" role="tab" aria-selected="false" title="TariAds Billboard — Digital Advertising & Campaigns">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <line x1="8" x2="16" y1="21" y2="21"/>
+            <line x1="12" x2="12" y1="17" y2="21"/>
+          </svg>
+          <span>Billboard</span>
+        </a>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="saved.html" class="saved-btn" title="Saved Listings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="saved-label">Saved</span>
+          <span class="badge-count saved-count-display" style="display:none;">0</span>
+        </a>
+
+        <a href="post-listing.html?type=property" class="btn btn-primary btn-sm header-post-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          <span class="post-btn-text">Post Listing</span>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobileNavDrawer">
+    <div class="drawer-mode-switch-container">
+      <div class="drawer-mode-label">TARIADS EXPERIENCE</div>
+      <div class="ecosystem-mode-switch mobile-drawer-switch">
+        <a href="index.html" class="mode-btn active">Marketplace</a>
+        <a href="https://billboard.usetariads.com" class="mode-btn">Billboard ↗</a>
+      </div>
+    </div>
+    <div class="drawer-links-group">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="properties.html" class="nav-link active">Property</a>
+      <a href="vehicles.html" class="nav-link">Vehicles</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="categories.html" class="nav-link">All Categories</a>
+      <a href="saved.html" class="nav-link">Saved Items</a>
+      <a href="about.html" class="nav-link">About & Safety</a>
+    </div>
+    <div class="drawer-footer-action">
+      <a href="post-listing.html?type=property" class="btn btn-primary" style="width:100%; text-align:center;">+ Post a Listing</a>
+    </div>
+  </div>
+
+  <!-- 404 Fallback if property not found -->
+  <div id="propertyNotFound" class="container" style="display:none; text-align:center; padding:5rem 1rem;">
+    <h2>Property Not Found</h2>
+    <p style="color:#64748B; margin:1rem 0 2rem;">The requested property listing may have expired or been removed by the landlord.</p>
+    <a href="properties.html" class="btn btn-primary">Browse Available Properties</a>
+  </div>
+
+  <!-- Main Property Detail View Container -->
+  <div id="propertyDetailContent">
+    
+    <!-- Detail Header -->
+    <div class="property-detail-header">
+      <div class="container">
+        <div class="breadcrumb-nav">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <a href="properties.html" id="breadcrumbCategory">Properties</a>
+          <span>/</span>
+          <span id="breadcrumbTitle" style="color:#0F172A; font-weight:600;">...</span>
+        </div>
+
+        <div class="detail-headline-row">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem; flex-wrap:wrap;">
+              <span id="propIdBadge" style="font-size:0.75rem; font-weight:700; background:#E2E8F0; color:#334155; padding:0.2rem 0.55rem; border-radius:4px;">
+                Listing ID
+              </span>
+              <span class="verified-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Verified Listing
+              </span>
+              <span style="font-size:0.8rem; color:#059669; font-weight:700;">
+                ● <span id="propAvailability">Available</span>
+              </span>
+            </div>
+            <h1 class="detail-title" id="propTitle">Loading Property...</h1>
+            <div class="detail-location-bar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#075E34" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span id="propLocation">...</span> • 
+              <span id="propAddress" style="color:#64748B; font-size:0.85rem;">...</span>
+            </div>
+          </div>
+
+          <div class="detail-header-actions">
+            <button class="btn btn-secondary btn-sm" id="detailShareBtn" title="Share property">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
+              Share
+            </button>
+            <button class="btn btn-secondary btn-sm" id="detailSaveBtn" title="Save property to wishlist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              Save Property
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery-section">
+      <div class="container">
+        <div class="gallery-grid">
+          <div class="gallery-main gallery-clickable" data-index="0">
+            <img id="galleryMainImg" src="" alt="Primary Property Photo" />
+          </div>
+          <div class="gallery-side">
+            <div class="gallery-thumb gallery-clickable" data-index="1">
+              <img id="galleryThumb1" src="" alt="Property Photo 2" />
+            </div>
+            <div class="gallery-thumb gallery-clickable" data-index="2">
+              <img id="galleryThumb2" src="" alt="Property Photo 3" />
+              <div class="view-all-photos-overlay">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                <span>View All Photos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content & Sidebar Booking Area -->
+    <div class="container">
+      <div class="property-content-layout">
+        
+        <!-- Left Details Column -->
+        <div class="property-main-details">
+
+          <!-- Mobile Price Bar (visible on small screens) -->
+          <div class="detail-card-box" style="display:none;" id="mobilePriceCard">
+            <div style="font-size:1.75rem; font-weight:800; color:#075E34;" id="propPrice">$0</div>
+            <div style="font-size:0.8rem; color:#64748B; margin-top:-0.2rem;" id="propZiGGuide">...</div>
+          </div>
+
+          <!-- Specs Bar -->
+          <div class="detail-specs-bar">
+            <div>
+              <div class="spec-box-label">Bedrooms</div>
+              <div class="spec-box-value" id="propBeds">-</div>
+            </div>
+            <div>
+              <div class="spec-box-label">Bathrooms</div>
+              <div class="spec-box-value" id="propBaths">-</div>
+            </div>
+            <div>
+              <div class="spec-box-label">Floor Area</div>
+              <div class="spec-box-value" id="propSize">-</div>
+            </div>
+            <div>
+              <div class="spec-box-label">Parking</div>
+              <div class="spec-box-value" id="propParking">-</div>
+            </div>
+          </div>
+
+          <!-- Verified Guarantee Card -->
+          <div class="verified-guarantee-card" id="verifiedGuaranteeCard">
+            <div class="verified-guarantee-header">
+              <div class="verified-badge-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size:1.1rem; font-weight:800; color:#075E34;" id="propVerificationBadge">
+                  Verified by TariAds
+                </h3>
+                <p style="font-size:0.8125rem; color:#065F46;">
+                  Audited by TariAds Physical Inspection Team • <span id="propVerifiedDate">Recent</span>
+                </p>
+              </div>
+            </div>
+
+            <ul class="verified-guarantee-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Physical property inspection completed</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Landlord / Agent identity confirmed</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Solar backup & borehole water verified</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Zero fake-listing / ghost viewing guarantee</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Description Section -->
+          <div class="detail-card-box">
+            <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:1rem;">About This Property</h3>
+            <p id="propDescription" style="color:#334155; line-height:1.7; white-space:pre-line;">
+              Loading description...
+            </p>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid #E2E8F0;">
+              <div>
+                <span style="font-size:0.8rem; color:#64748B; font-weight:600;">Furnishing Status:</span>
+                <div style="font-weight:700; color:#0F172A;" id="propFurnished">-</div>
+              </div>
+              <div>
+                <span style="font-size:0.8rem; color:#64748B; font-weight:600;">Property Type:</span>
+                <div style="font-weight:700; color:#0F172A;" id="propType">-</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amenities Checklist -->
+          <div class="detail-card-box">
+            <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:0.5rem;">Property Features & Utilities</h3>
+            <p style="font-size:0.85rem; color:#64748B; margin-bottom:1.25rem;">Confirmed utilities for uninterrupted living in Zimbabwe</p>
+            
+            <div class="amenities-grid" id="propAmenitiesGrid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Location & Nearby Landmarks -->
+          <div class="detail-card-box">
+            <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:0.5rem;">Location & Nearby Landmarks</h3>
+            <p style="font-size:0.85rem; color:#64748B; margin-bottom:1rem;">Convenient local amenities and access routes</p>
+            <ul id="propLandmarksList" style="list-style:none; padding:0;">
+              <!-- Landmarks populated -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Booking & Agent Sidebar -->
+        <aside class="property-sidebar">
+          <div class="sidebar-booking-card">
+            
+            <div class="sidebar-price-box">
+              <span style="font-size:0.8rem; font-weight:700; color:#64748B; text-transform:uppercase;">Price</span>
+              <div class="sidebar-price" id="sidebarPropPrice">$0</div>
+              <div style="font-size:0.8125rem; color:#64748B; margin-top:0.25rem;" id="sidebarZiGGuide">...</div>
+              <div style="font-size:0.8125rem; color:#475569; margin-top:0.5rem; display:flex; justify-content:space-between;">
+                <span>Security Deposit:</span>
+                <strong id="propDeposit">$0</strong>
+              </div>
+            </div>
+
+            <!-- Agent Contact Info -->
+            <div class="sidebar-agent-profile">
+              <img id="agentAvatar" class="agent-avatar" src="" alt="Agent Profile" />
+              <div>
+                <div class="agent-name" id="agentName">Agent</div>
+                <div class="agent-agency" id="agentAgency">Real Estate</div>
+                <div class="agent-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  Verified Host / Agent
+                </div>
+                <div style="font-size:0.75rem; color:#64748B; margin-top:0.2rem;" id="agentResponseTime">
+                  Fast response
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Stack -->
+            <div class="booking-action-stack">
+              <button class="btn btn-primary" id="sidebarViewingBtn" style="width:100%;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                Request Scheduled Viewing
+              </button>
+
+              <a id="sidebarWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width:100%;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Inquire on WhatsApp
+              </a>
+
+              <a id="agentPhoneLink" href="#" class="btn btn-secondary" style="width:100%;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Call: <span id="agentPhone">+263 77...</span>
+              </a>
+            </div>
+
+            <!-- Property QR Code Section (for signboards & mobile scanning) -->
+            <div class="qr-widget-box">
+              <div style="font-size:0.75rem; font-weight:700; color:#475569; margin-bottom:0.5rem; text-transform:uppercase;">
+                Property Signboard QR Code
+              </div>
+              <div id="propertyQRContainer"></div>
+              <div style="font-size:0.75rem; color:#64748B;">
+                Tari ID: <strong id="qrPropId">TAR-000</strong>
+              </div>
+            </div>
+
+            <!-- Anti Scam Warning -->
+            <div style="margin-top:1.25rem; padding:0.85rem; background:#FFFBEB; border:1px solid #FDE68A; border-radius:8px; font-size:0.75rem; color:#92400E; line-height:1.4;">
+              <strong>🛡️ TariAds Anti-Scam Protection:</strong> Never pay viewing fees before physically meeting the verified agent at the property. Always insist on official viewing confirmation.
+            </div>
+
+            <div style="text-align:center; margin-top:1rem;">
+              <button id="openReportBtn" style="font-size:0.75rem; color:#EF4444; font-weight:600; text-decoration:underline;">
+                Report Listing or Suspected Scam
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Similar Properties Nearby -->
+      <div style="margin-top:2rem; padding-top:3rem; border-top:1px solid #E2E8F0; margin-bottom:4rem;">
+        <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:1.5rem;">Similar Properties You Might Like</h3>
+        <div class="property-grid" id="similarPropertiesGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Request Viewing Modal -->
+  <div class="modal-backdrop" id="viewingModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Request Property Viewing</h3>
+        <button class="modal-close-btn" id="closeViewingModalBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form id="viewingRequestForm">
+          <div style="background:#F0FDF4; border:1px solid #A8DAB5; padding:0.85rem; border-radius:8px; margin-bottom:1.25rem; font-size:0.8125rem; color:#065F46;">
+            <strong>ℹ️ How Viewings Work:</strong> Your request is sent directly to the verified landlord/agent. They will confirm the appointment via WhatsApp/Phone before you travel.
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="viewingDateInput">Preferred Viewing Date *</label>
+            <input type="date" class="form-input" id="viewingDateInput" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="viewingTimeSlot">Preferred Time Slot *</label>
+            <select class="form-select" id="viewingTimeSlot" required>
+              <option value="Morning (09:00 - 11:30)">Morning (09:00 - 11:30)</option>
+              <option value="Midday (12:00 - 14:30)">Midday (12:00 - 14:30)</option>
+              <option value="Afternoon (15:00 - 17:30)">Afternoon (15:00 - 17:30)</option>
+              <option value="Saturday Morning (09:00 - 12:00)">Saturday Morning (09:00 - 12:00)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="viewingNameInput">Your Full Name *</label>
+            <input type="text" class="form-input" id="viewingNameInput" placeholder="e.g. Farai Moyo" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="viewingPhoneInput">WhatsApp / Phone Number *</label>
+            <input type="tel" class="form-input" id="viewingPhoneInput" placeholder="e.g. +263 77 123 4567" required />
+            <div class="form-help">The agent will WhatsApp or call you to confirm gate entry and directions.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="viewingNotesInput">Special Requests / Questions (Optional)</label>
+            <textarea class="form-textarea" id="viewingNotesInput" rows="2" placeholder="e.g. Moving date, number of occupants, parking needs..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; height:48px;">
+            Submit Viewing Request
+          </button>
+        </form>
+
+        <!-- Success Confirmation View -->
+        <div id="viewingSuccessBox" style="display:none; text-align:center; padding:1.5rem 0;">
+          <div style="width:56px; height:56px; background:#EBF7F0; color:#075E34; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h4 style="font-size:1.25rem; font-weight:800; color:#0F172A; margin-bottom:0.5rem;">Viewing Request Submitted!</h4>
+          <p style="font-size:0.875rem; color:#64748B; margin-bottom:1rem;">
+            Your request has been forwarded to the verified agent. Reference code: <strong id="viewingConfirmId" style="color:#075E34;">VR-000</strong>.
+          </p>
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:0.75rem; border-radius:8px; font-size:0.8125rem; color:#475569; margin-bottom:1.5rem;">
+            Scheduled for: <strong id="viewingConfirmDate">Date</strong>
+          </div>
+          <a href="saved.html" class="btn btn-outline btn-sm">View in My Saved & Requests</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Gallery Modal -->
+  <div class="modal-backdrop" id="lightboxModal" style="background:rgba(0,0,0,0.92);">
+    <div style="position:relative; width:90%; max-width:1000px; max-height:90vh; display:flex; flex-direction:column; align-items:center;">
+      <div style="width:100%; display:flex; justify-content:space-between; color:#fff; margin-bottom:0.75rem;">
+        <span id="lightboxCounter" style="font-weight:700; font-size:0.9rem;">1 / 1</span>
+        <button id="lightboxClose" style="color:#fff; padding:0.25rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <img id="lightboxImg" src="" alt="Full size photo" style="max-width:100%; max-height:75vh; object-fit:contain; border-radius:8px;" />
+      <div style="display:flex; gap:1.5rem; margin-top:1rem;">
+        <button id="lightboxPrev" class="btn btn-secondary btn-sm" style="color:#fff; background:rgba(255,255,255,0.2); border:none;">
+          ← Previous
+        </button>
+        <button id="lightboxNext" class="btn btn-secondary btn-sm" style="color:#fff; background:rgba(255,255,255,0.2); border:none;">
+          Next →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report Listing Modal -->
+  <div class="modal-backdrop" id="reportModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Report Listing</h3>
+        <button class="modal-close-btn" id="closeReportBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="reportListingForm">
+          <div class="form-group">
+            <label class="form-label">What is the issue with this listing?</label>
+            <select class="form-select" required>
+              <option value="scam">Suspected scam / Fake landlord</option>
+              <option value="unavailable">Property is already occupied / unavailable</option>
+              <option value="incorrect_price">Incorrect price / Hidden charges</option>
+              <option value="wrong_photos">Photos do not match real property</option>
+              <option value="other">Other trust violation</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Additional Details</label>
+            <textarea class="form-textarea" rows="3" placeholder="Provide any details that will help our Trust & Safety team investigate..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">
+            Submit Report
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>TARIADS</h3>
+          <p>
+            Global listings and property marketplace. Built to make finding verified places, vehicles, and products easy, safe, and direct worldwide.
+          </p>
+          <div style="margin-top:1.5rem; color:#A8DAB5; font-size:0.8125rem; font-weight:700;">
+            PROPERTY • LISTINGS • VISIBILITY
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Property Categories</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?category=rent">Houses for Rent</a></li>
+            <li><a href="properties.html?category=rent&type=Apartment">Apartments & Flats</a></li>
+            <li><a href="properties.html?category=rooms">Rooms & Cottages</a></li>
+            <li><a href="properties.html?category=student">Student Accommodation</a></li>
+            <li><a href="properties.html?category=sale">Houses for Sale</a></li>
+            <li><a href="properties.html?category=commercial">Commercial Property</a></li>
+            <li><a href="properties.html?category=holiday">Holiday & Short-Stays</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Top Locations</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?location=Harare">Harare Properties</a></li>
+            <li><a href="properties.html?location=Bulawayo">Bulawayo Properties</a></li>
+            <li><a href="properties.html?location=Mutare">Mutare Properties</a></li>
+            <li><a href="properties.html?location=Gweru">Gweru Properties</a></li>
+            <li><a href="properties.html?location=Victoria+Falls">Victoria Falls Lodges</a></li>
+            <li><a href="properties.html?location=Chitungwiza">Chitungwiza Rentals</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Trust & Support</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About TariAds Verification</a></li>
+            <li><a href="about.html#safety">Anti-Scam Viewing Rules</a></li>
+            <li><a href="list-property.html">List a Property</a></li>
+            <li><a href="saved.html">My Saved Properties</a></li>
+            <li><a href="about.html#contact">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 TariAds.com — Zimbabwe Property First Platform. All rights reserved.</div>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="about.html#privacy">Privacy Policy</a>
+          <a href="about.html#terms">Terms of Service</a>
+          <a href="about.html#safety">Safety Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/property-detail.js"></script>
+</body>
+</html>
