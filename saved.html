@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#075E34">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TariAds">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Saved — TariAds Personal Shortlist</title>
+  <meta name="description" content="View and manage your saved property, vehicle, and product listings on TariAds.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Navigation Pre-warming for Snappy Transitions -->
+  <link rel="prefetch" href="index.html">
+  <link rel="prefetch" href="discover.html">
+  <link rel="prefetch" href="categories.html">
+  <link rel="prefetch" href="post-listing.html">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body class="app-dark-page saved-page">
+
+  <!-- Site Header -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" title="TariAds Marketplace">
+        <div class="brand-icon-box">T</div>
+        <div class="brand-text">
+          <span class="brand-title">TARIADS</span>
+        </div>
+      </a>
+
+      <!-- Ecosystem Mode Switch: Marketplace ↔ Billboard -->
+      <div class="ecosystem-mode-switch" role="tablist" aria-label="TariAds Experience Mode">
+        <a href="index.html" class="mode-btn active" id="modeMarketplace" role="tab" aria-selected="true" title="TariAds Marketplace — Discover and List">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Marketplace</span>
+        </a>
+        <a href="https://billboard.usetariads.com" class="mode-btn" id="modeBillboard" role="tab" aria-selected="false" title="TariAds Billboard — Digital Advertising & Campaigns">
+          <svg class="mode-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <line x1="8" x2="16" y1="21" y2="21"/>
+            <line x1="12" x2="12" y1="17" y2="21"/>
+          </svg>
+          <span>Billboard</span>
+        </a>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="saved.html" class="saved-btn active" title="Saved Items">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#34D399" stroke="#34D399" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="saved-label">Saved</span>
+          <span class="badge-count saved-count-display" style="display:none;">0</span>
+        </a>
+
+        <a href="post-listing.html" class="btn btn-primary btn-sm header-post-btn" id="headerListBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          <span class="post-btn-text">Post Listing</span>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobileNavDrawer">
+    <div class="drawer-mode-switch-container">
+      <div class="drawer-mode-label">TARIADS EXPERIENCE</div>
+      <div class="ecosystem-mode-switch mobile-drawer-switch">
+        <a href="index.html" class="mode-btn active">Marketplace</a>
+        <a href="https://billboard.usetariads.com" class="mode-btn">Billboard ↗</a>
+      </div>
+    </div>
+    <div class="drawer-links-group">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="discover.html" class="nav-link">Discover Reels</a>
+      <a href="categories.html" class="nav-link">Categories</a>
+      <a href="properties.html" class="nav-link">Property</a>
+      <a href="vehicles.html" class="nav-link">Vehicles</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="saved.html" class="nav-link active">Saved Items</a>
+      <a href="about.html" class="nav-link">About & Safety</a>
+    </div>
+    <div class="drawer-footer-action">
+      <a href="post-listing.html" class="btn btn-primary" style="width:100%; text-align:center;">+ Post a Listing</a>
+    </div>
+  </div>
+
+  <!-- Persistent Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Bottom Navigation">
+    <a href="index.html" class="bottom-nav-item" id="bnavHome">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="discover.html" class="bottom-nav-item" id="bnavDiscover">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+      </svg>
+      <span>Discover</span>
+    </a>
+    <a href="categories.html" class="bottom-nav-item" id="bnavCategories">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="7" height="7" x="3" y="3" rx="1"/>
+        <rect width="7" height="7" x="14" y="3" rx="1"/>
+        <rect width="7" height="7" x="14" y="14" rx="1"/>
+        <rect width="7" height="7" x="3" y="14" rx="1"/>
+      </svg>
+      <span>Categories</span>
+    </a>
+    <a href="saved.html" class="bottom-nav-item active" id="bnavSaved">
+      <svg class="bnav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+      </svg>
+      <span>Saved</span>
+      <span class="badge-count saved-count-display bnav-badge" style="display:none;">0</span>
+    </a>
+    <a href="post-listing.html" class="bottom-nav-item bnav-post-highlight" id="bnavPost">
+      <div class="bnav-post-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <span>Post</span>
+    </a>
+  </nav>
+
+  <!-- Compact Screen Sub-Bar -->
+  <section class="app-screen-subbar">
+    <div class="container">
+      <div class="app-screen-title-row">
+        <div>
+          <h1 class="app-screen-heading">Saved</h1>
+          <p class="app-screen-subtext">Your personal shortlist of shortlisted listings and viewing connections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="container" style="padding-top:0.75rem; padding-bottom:4rem;">
+    <!-- Horizontal Filter Bar -->
+    <div class="saved-filter-bar" id="savedFilterBar" role="tablist" aria-label="Filter saved listings by category">
+      <button type="button" class="saved-filter-pill active" data-filter="all" role="tab" aria-selected="true">
+        <span>All</span>
+        <span class="saved-filter-count" id="countAll">0</span>
+      </button>
+      <button type="button" class="saved-filter-pill" data-filter="property" role="tab" aria-selected="false">
+        <span>Property</span>
+        <span class="saved-filter-count" id="countProp">0</span>
+      </button>
+      <button type="button" class="saved-filter-pill" data-filter="vehicle" role="tab" aria-selected="false">
+        <span>Vehicles</span>
+        <span class="saved-filter-count" id="countVeh">0</span>
+      </button>
+      <button type="button" class="saved-filter-pill" data-filter="product" role="tab" aria-selected="false">
+        <span>Products</span>
+        <span class="saved-filter-count" id="countPrd">0</span>
+      </button>
+      <button type="button" class="saved-filter-pill" data-filter="service" role="tab" aria-selected="false">
+        <span>Services</span>
+        <span class="saved-filter-count" id="countSrv">0</span>
+      </button>
+    </div>
+
+    <!-- Empty State -->
+    <div id="savedEmptyState" class="saved-empty-container" style="display:none;">
+      <div class="saved-empty-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+      </div>
+      <h2 class="saved-empty-title">No saved listings yet</h2>
+      <p class="saved-empty-desc">
+        Tap the heart icon on any property, vehicle, or product card across TariAds to build your shortlist.
+      </p>
+      <a href="index.html" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.6rem 1.25rem;">
+        <span>Discover Listings</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Saved Listings Grid (using pure white listing cards) -->
+    <div class="discovery-feed-grid" id="savedFeedGrid" style="display:none;">
+      <!-- Injected via js/saved.js -->
+    </div>
+
+    <!-- Viewing Requests Tracker (Discreet, rendered only when genuine viewings exist) -->
+    <section id="viewingRequestsSection" style="display:none; margin-top:3rem;">
+      <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+        <span>🗓️</span> <span>Scheduled Viewings</span>
+      </h3>
+      <div id="viewingRequestsList" style="display:flex; flex-direction:column; gap:0.85rem;">
+        <!-- Injected via js/saved.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2026 TariAds. Global Listings Marketplace.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/saved.js"></script>
+</body>
+</html>

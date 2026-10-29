@@ -1,0 +1,6 @@
+/**
+ * TariAds - Primary Stylesheet
+ * Forwards to style.css for flat static hosting compatibility
+ */
+
+@import "./style.css";
